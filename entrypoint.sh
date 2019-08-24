@@ -2,6 +2,9 @@
 
 set -eo
 
+# Update Github Config.
+git config --global user.email "githubactionbot+wp@gmail.com" && git config --global user.name "WP Plugin Publisher"
+
 WORDPRESS_USERNAME="$INPUT_WORDPRESS_USERNAME"
 WORDPRESS_PASSWORD="$INPUT_WORDPRESS_PASSWORD"
 SLUG="$INPUT_SLUG"
@@ -119,10 +122,6 @@ echo "➤ Committing files..."
 svn commit -m "Update to version $VERSION from GitHub" --no-auth-cache --non-interactive  --username "$WORDPRESS_USERNAME" --password "$WORDPRESS_PASSWORD"
 
 echo "✓ Plugin deployed!"
-
-
-# Update Github Config.
-git config --global user.email "githubactionbot+wp@gmail.com" && git config --global user.name "WP Plugin Publisher"
 
 # Add File To Commit
 #git add -A
