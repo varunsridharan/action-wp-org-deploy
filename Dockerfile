@@ -1,8 +1,8 @@
-FROM alpine:latest
+FROM debian:stable-slim
 
-RUN apk add subversion
+RUN apt-get install -y subversion
 
-RUN apk add rsync
+RUN apt-get install -y rsync
 
 COPY entrypoint.sh /entrypoint.sh
 
