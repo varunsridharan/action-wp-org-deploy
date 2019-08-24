@@ -39,6 +39,8 @@ if [[ -z "$IGNORE_FILE" ]]; then
 	IGNORE_FILE=".wporgignore"
 fi
 
+ls -la
+
 echo '----------------'
 # Echo Plugin Slug
 echo "ℹ︎ SLUG is $SLUG"
@@ -56,12 +58,14 @@ SVN_DIR="/github/svn-${SLUG}"
 echo "➤ Checking out .org repository..."
 svn checkout --depth immediates "$SVN_URL" "$SVN_DIR"
 cd "$SVN_DIR"
+ls -la
 svn update --set-depth infinity assets
 svn update --set-depth infinity trunk
 
 
 echo "➤ Copying files..."
 cd "$GITHUB_WORKSPACE"
+ls -la
 
 # "Export" a cleaned copy to a temp directory
 TMP_DIR="/github/archivetmp"
