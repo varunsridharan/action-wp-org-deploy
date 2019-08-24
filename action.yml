@@ -1,0 +1,37 @@
+name: 'WordPress Org Deploy'
+description: 'Github Action Pushes WordPress.org Plugins Update'
+author: 'varunsridharan'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+inputs:
+  WORDPRESS_USERNAME:
+    description: 'WordPress.org Username'
+    default: ''
+  WORDPRESS_PASSWORD:
+    description: 'WordPress.org PASSWORD'
+    default: ''
+  SLUG:
+    description: 'Plugin Slug'
+    default: ''
+  VERSION:
+    description: 'Plugin Version'
+    default: ''
+  ASSETS_DIR:
+    description: 'Plugin Assets Dir For WordPress.org'
+    default: '.wordpress-org'
+  IGNORE_FILE:
+    description: 'WordPress.org Exclude List File'
+    default: '.wporgignore'
+
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.WORDPRESS_USERNAME }}
+    - ${{ inputs.WORDPRESS_PASSWORD }}
+    - ${{ inputs.SLUG }}
+    - ${{ inputs.VERSION }}
+    - ${{ inputs.ASSETS_DIR }}
+    - ${{ inputs.IGNORE_FILE }}
