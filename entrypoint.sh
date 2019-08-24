@@ -122,7 +122,7 @@ echo "✓ Plugin deployed!"
 
 
 # Update Github Config.
-#git config --global user.email "githubactionbot+wp@gmail.com" && git config --global user.name "WP Plugin Publisher"
+git config --global user.email "githubactionbot+wp@gmail.com" && git config --global user.name "WP Plugin Publisher"
 
 # Add File To Commit
 #git add -A
