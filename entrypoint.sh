@@ -77,7 +77,7 @@ mkdir "$TMP_DIR"
 
 # If there's no .gitattributes file, write a default one into place
 if [[ ! -e "$GITHUB_WORKSPACE/$IGNORE_FILE" ]]; then
-	echo ".git .github exclude.txt ${ASSETS_DIR} ${IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
+	echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
 
 	# Ensure we are in the $GITHUB_WORKSPACE directory, just in case
 	# The .gitattributes file has to be committed to be used
