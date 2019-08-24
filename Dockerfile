@@ -1,6 +1,8 @@
 FROM alpine:latest
 
-RUN apt-get update && apt-get install -y subversion rsync && apt-get clean -y  && rm -rf /var/lib/apt/lists/*
+RUN apk add subversion
+
+RUN apk add rsync
 
 COPY entrypoint.sh /entrypoint.sh
 
