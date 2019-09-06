@@ -74,7 +74,9 @@ cd "$GITHUB_WORKSPACE"
 
 # "Export" a cleaned copy to a temp directory
 TMP_DIR="/github/archivetmp"
+ASSET_TMP_DIR="github/assettmp/"
 mkdir "$TMP_DIR"
+mkdir "$ASSET_TMP_DIR"
 
 echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
 echo ".psd .DS_Store Thumbs.db ehthumbs.db ehthumbs_vista.db .git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE"
@@ -93,6 +95,9 @@ fi
 # This will exclude everything in the $IGNORE_FILE file
 rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$IGNORE_FILE" "./" "$TMP_DIR"
 
+# This will exclude everything in the $ASSETS_IGNORE_FILE file
+rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./" "$ASSET_TMP_DIR"
+
 cd "$SVN_DIR"
 
 # Copy from clean copy to /trunk, excluding dotorg assets
@@ -100,7 +105,7 @@ cd "$SVN_DIR"
 rsync -rc "$TMP_DIR/" trunk/ --delete
 
 # Copy dotorg assets to /assets
-rsync -rc --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete
+rsync -rc "$ASSET_TMP_DIR/" assets/ --delete
 
 # Add everything and commit to SVN
 # The force flag ensures we recurse into subdirectories even if they are already added
