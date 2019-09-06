@@ -79,7 +79,7 @@ mkdir "$TMP_DIR"
 mkdir "$ASSET_TMP_DIR"
 
 echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
-echo ".psd .DS_Store Thumbs.db ehthumbs.db ehthumbs_vista.db .git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE"
+echo "*.psd .DS_Store Thumbs.db ehthumbs.db ehthumbs_vista.db .git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE"
 
 #cat "$GITHUB_WORKSPACE/$IGNORE_FILE"
 
