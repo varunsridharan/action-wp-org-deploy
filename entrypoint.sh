@@ -74,7 +74,7 @@ cd "$GITHUB_WORKSPACE"
 
 # "Export" a cleaned copy to a temp directory
 TMP_DIR="/github/archivetmp"
-ASSET_TMP_DIR="github/assettmp/"
+ASSET_TMP_DIR="/github/assettmp/"
 mkdir "$TMP_DIR"
 mkdir "$ASSET_TMP_DIR"
 
