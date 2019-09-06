@@ -89,6 +89,12 @@ if [[ ! -e "$GITHUB_WORKSPACE/$IGNORE_FILE" ]]; then
 	# The .gitattributes file has to be committed to be used
 	# Just don't push it to the origin repo :)
 	git add "$IGNORE_FILE" && git commit -m "Add $IGNORE_FILE file"
+fi
+# If there's no .gitattributes file, write a default one into place
+if [[ ! -e "$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" ]]; then
+	# Ensure we are in the $GITHUB_WORKSPACE directory, just in case
+	# The .gitattributes file has to be committed to be used
+	# Just don't push it to the origin repo :)
 	git add "$ASSETS_IGNORE_FILE" && git commit -m "Add $ASSETS_IGNORE_FILE file"
 fi
 
