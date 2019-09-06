@@ -74,7 +74,7 @@ cd "$GITHUB_WORKSPACE"
 
 # "Export" a cleaned copy to a temp directory
 TMP_DIR="/github/archivetmp"
-ASSET_TMP_DIR="/github/assettmp/"
+ASSET_TMP_DIR="/github/assettmp"
 mkdir "$TMP_DIR"
 mkdir "$ASSET_TMP_DIR"
 
@@ -96,7 +96,7 @@ fi
 rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$IGNORE_FILE" "./" "$TMP_DIR"
 
 # This will exclude everything in the $ASSETS_IGNORE_FILE file
-rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./" "$ASSET_TMP_DIR"
+rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./${ASSETS_DIR}" "$ASSET_TMP_DIR"
 
 cd "$SVN_DIR"
 
