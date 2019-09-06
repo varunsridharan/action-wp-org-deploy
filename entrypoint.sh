@@ -93,15 +93,12 @@ if [[ ! -e "$GITHUB_WORKSPACE/$IGNORE_FILE" ]]; then
 fi
 
 # This will exclude everything in the $IGNORE_FILE file
+echo "➤ Removing Exlucded Files From Plugin Source"
 rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$IGNORE_FILE" "./" "$TMP_DIR"
 
-ls -la
-echo "> Copying Assets File"
 # This will exclude everything in the $ASSETS_IGNORE_FILE file
+echo "➤ Removing Exlucded Files From Assets Folder"
 rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./${ASSETS_DIR}/" "$ASSET_TMP_DIR"
-ls -la
-cd $ASSET_TMP_DIR
-ls -la
 
 cd "$SVN_DIR"
 
