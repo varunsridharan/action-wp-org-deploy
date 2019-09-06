@@ -23,6 +23,9 @@ inputs:
   IGNORE_FILE:
     description: 'WordPress.org Exclude List File'
     default: '.wporgignore'
+  ASSETS_IGNORE_FILE:
+    description: 'WordPress.org Assets Exclude List File'
+    default: '.wporgassetsignore'
 
 
 runs:

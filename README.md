@@ -18,6 +18,7 @@ Secrets can be set while editing your workflow or in the repository settings. Th
 * `VERSION` - defaults to the tag name; do not recommend setting this except for testing purposes
 * `ASSETS_DIR` - defaults to `.wordpress-org`, customizable for other locations of WordPress.org plugin repository-specific assets that belong in the top-level `assets` directory (the one on the same level as `trunk`)
 * `IGNORE_FILE` - defaults to `.wporgignore`, customizable for other locations of list of files to be ignore like `.gitignore`
+* `ASSETS_IGNORE_FILE` - defaults to `.wporgassetsignore`, customizable for other locations of list of files to be ignore like `.gitignore`
 
 ### Excluding files from deployment
 If there are files or directories to be excluded from deployment, such as tests or editor config files, they can be specified in your `.wporgignore` file. If you use this method, please be sure to include the following items:
@@ -48,7 +49,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: WordPress Plugin Deploy
-      uses: 10up/action-wp-org-deploy@master
+      uses: varunsridharan/action-wp-org-deploy@master
       with:
         WORDPRESS_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
         WORDPRESS_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
@@ -63,6 +64,14 @@ This Github Action Bootstrapped From
 * [rtCamp/action-wordpress-org-plugin-deploy](https://github.com/10up/rtCamp/action-wordpress-org-plugin-deploy)  
 
 ---
+## Change Log
+
+### 1.1 - 06/09/2019
+* Added Option To Exclude Files When Updating Assets Folder.
+
+### 1.0 - 24/08/2019
+* First Release
+
 ## Contribute
 If you would like to help, please take a look at the list of
 [issues][issues] or the [To Do](#-todo) checklist.

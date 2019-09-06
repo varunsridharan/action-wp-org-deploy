@@ -11,6 +11,8 @@ SLUG="$INPUT_SLUG"
 VERSION="$INPUT_VERSION"
 ASSETS_DIR="$INPUT_ASSETS_DIR"
 IGNORE_FILE="$INPUT_IGNORE_FILE"
+ASSETS_IGNORE_FILE="$INPUT_ASSETS_IGNORE_FILE"
+
 
 # Ensure SVN username and password are set
 # IMPORTANT: secrets are accessible by anyone with write access to the repository!
@@ -42,6 +44,10 @@ if [[ -z "$IGNORE_FILE" ]]; then
 	IGNORE_FILE=".wporgignore"
 fi
 
+if [[ -z "$ASSETS_IGNORE_FILE" ]]; then
+	ASSETS_IGNORE_FILE=".wporgassetsignore"
+fi
+
 echo '----------------'
 # Echo Plugin Slug
 echo "ℹ︎ SLUG is $SLUG"
@@ -70,7 +76,8 @@ cd "$GITHUB_WORKSPACE"
 TMP_DIR="/github/archivetmp"
 mkdir "$TMP_DIR"
 
-echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
+echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
+echo ".psd .DS_Store Thumbs.db ehthumbs.db ehthumbs_vista.db .git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >> "$GITHUB_WORKSPACE/$IGNORE_FILE"
 
 cat "$GITHUB_WORKSPACE/$IGNORE_FILE"
 
@@ -80,6 +87,7 @@ if [[ ! -e "$GITHUB_WORKSPACE/$IGNORE_FILE" ]]; then
 	# The .gitattributes file has to be committed to be used
 	# Just don't push it to the origin repo :)
 	git add "$IGNORE_FILE" && git commit -m "Add $IGNORE_FILE file"
+	git add "$ASSETS_IGNORE_FILE" && git commit -m "Add $ASSETS_IGNORE_FILE file"
 fi
 
 # This will exclude everything in the $IGNORE_FILE file
@@ -92,7 +100,7 @@ cd "$SVN_DIR"
 rsync -rc "$TMP_DIR/" trunk/ --delete
 
 # Copy dotorg assets to /assets
-rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete
+rsync -rc --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete
 
 # Add everything and commit to SVN
 # The force flag ensures we recurse into subdirectories even if they are already added
