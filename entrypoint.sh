@@ -97,8 +97,9 @@ echo "➤ Removing Exlucded Files From Plugin Source"
 rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$IGNORE_FILE" "./" "$TMP_DIR"
 
 # This will exclude everything in the $ASSETS_IGNORE_FILE file
+cd "$ASSETS_DIR"
 echo "➤ Removing Exlucded Files From Assets Folder"
-rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./${ASSETS_DIR}/" "$ASSET_TMP_DIR"
+rsync -r --delete --exclude-from="$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" "./" "$ASSET_TMP_DIR"
 
 cd "$SVN_DIR"
 
