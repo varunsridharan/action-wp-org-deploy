@@ -1,5 +1,3 @@
-> **⚠️ Note:** To use this GitHub Action, you must have access to GitHub Actions. GitHub Actions are currently only available in public beta. You can [apply for Github Actions beta access here](https://github.com/features/actions).
-
 # WordPress.org Plugin Deploy - ***Github Action***
 This Action commits the contents of your Git tag to the WordPress.org plugin repository using the same tag name. 
 It excludes Git-specific items or files and directories as optionally defined in your `.wporgignore` file, and 
@@ -65,6 +63,8 @@ This Github Action Bootstrapped From
 
 ---
 ## Change Log
+### 1.2 - 29/04/2020
+* Improved Logging
 
 ### 1.1 - 06/09/2019
 * Added Option To Exclude Files When Updating Assets Folder.
