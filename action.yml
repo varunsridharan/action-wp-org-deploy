@@ -38,3 +38,4 @@ runs:
     - ${{ inputs.VERSION }}
     - ${{ inputs.ASSETS_DIR }}
     - ${{ inputs.IGNORE_FILE }}
+    - ${{ inputs.ASSETS_IGNORE_FILE }}
