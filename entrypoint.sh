@@ -2,9 +2,6 @@
 
 set -eo
 
-# Update Github Config.
-git config --global user.email "githubactionbot+wp@gmail.com" && git config --global user.name "WP Plugin Publisher"
-
 WORDPRESS_USERNAME="$INPUT_WORDPRESS_USERNAME"
 WORDPRESS_PASSWORD="$INPUT_WORDPRESS_PASSWORD"
 SLUG="$INPUT_SLUG"
@@ -47,7 +44,8 @@ if [[ -z "$ASSETS_IGNORE_FILE" ]]; then
   ASSETS_IGNORE_FILE=".wporgassetsignore"
 fi
 
-echo '##[group] Workflow Arguments'
+echo " "
+echo '##[group] ➤ Workflow Arguments'
 # Echo Plugin Slug
 echo "ℹ︎ WordPress Plugin SLUG is $SLUG"
 # Echo Plugin Version
@@ -75,24 +73,8 @@ TMP_DIR="/github/archivetmp"
 ASSET_TMP_DIR="/github/assettmp"
 mkdir "$TMP_DIR"
 mkdir "$ASSET_TMP_DIR"
-
 echo ".git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >>"$GITHUB_WORKSPACE/$IGNORE_FILE"
 echo "*.psd .DS_Store Thumbs.db ehthumbs.db ehthumbs_vista.db .git .github .gitignore .gitattributes ${ASSETS_DIR} ${IGNORE_FILE} ${ASSETS_IGNORE_FILE} node_modules" | tr " " "\n" >>"$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE"
-
-# If there's no .gitattributes file, write a default one into place
-if [[ ! -e "$GITHUB_WORKSPACE/$IGNORE_FILE" ]]; then
-  # Ensure we are in the $GITHUB_WORKSPACE directory, just in case
-  # The .gitattributes file has to be committed to be used
-  # Just don't push it to the origin repo :)
-  git add "$IGNORE_FILE" && git commit -m "Add $IGNORE_FILE file"
-fi
-# If there's no .gitattributes file, write a default one into place
-if [[ ! -e "$GITHUB_WORKSPACE/$ASSETS_IGNORE_FILE" ]]; then
-  # Ensure we are in the $GITHUB_WORKSPACE directory, just in case
-  # The .gitattributes file has to be committed to be used
-  # Just don't push it to the origin repo :)
-  git add "$ASSETS_IGNORE_FILE" && git commit -m "Add $ASSETS_IGNORE_FILE file"
-fi
 echo "##[endgroup]"
 
 # This will exclude everything in the $IGNORE_FILE file
@@ -109,7 +91,6 @@ cd "$SVN_DIR"
 # Copy from clean copy to /trunk, excluding dotorg assets
 # The --delete flag will delete anything in destination that no longer exists in source
 rsync -rc "$TMP_DIR/" trunk/ --delete
-
 # Copy dotorg assets to /assets
 rsync -rc "$ASSET_TMP_DIR/" assets/ --delete
 echo "##[endgroup]"
