@@ -17,6 +17,7 @@ Secrets can be set while editing your workflow or in the repository settings. Th
 * `ASSETS_DIR` - defaults to `.wordpress-org`, customizable for other locations of WordPress.org plugin repository-specific assets that belong in the top-level `assets` directory (the one on the same level as `trunk`)
 * `IGNORE_FILE` - defaults to `.wporgignore`, customizable for other locations of list of files to be ignore like `.gitignore`
 * `ASSETS_IGNORE_FILE` - defaults to `.wporgassetsignore`, customizable for other locations of list of files to be ignore like `.gitignore`
+* `DIST_LOCATION` - defaults to `./dist/`, option to save final zip files.
 
 ### Excluding files from deployment
 If there are files or directories to be excluded from deployment, such as tests or editor config files, they can be specified in your `.wporgignore` file. If you use this method, please be sure to include the following items:
@@ -63,6 +64,10 @@ This Github Action Bootstrapped From
 
 ---
 ## Change Log
+
+### 1.3 - 29/04/2020
+* Added Custom Arg To Provide Path To Save Dist File.
+
 ### 1.2 - 29/04/2020
 * Improved Logging
 
