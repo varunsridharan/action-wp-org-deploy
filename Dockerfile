@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-RUN apt-get update && apt-get install -y subversion rsync git && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y subversion rsync git zip && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 
