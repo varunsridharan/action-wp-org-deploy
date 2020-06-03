@@ -26,6 +26,9 @@ inputs:
   ASSETS_IGNORE_FILE:
     description: 'WordPress.org Assets Exclude List File'
     default: '.wporgassetsignore'
+  DIST_LOCATION:
+    description: 'Provide a path here final zip file can be stored. which can be used by other actions.'
+    default: 'dist/'
 
 
 runs:

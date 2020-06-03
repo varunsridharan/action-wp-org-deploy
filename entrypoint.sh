@@ -121,8 +121,6 @@ echo "##[endgroup]
 ✓ Plugin deployed!"
 
 echo "##[group] Creating Dist File"
-mkdir "$GITHUB_WORKSPACE/dist/"
-zip -r9 "$GITHUB_WORKSPACE/dist/$SLUG-$VERSION.zip" "tags/$VERSION/"
-cd "$GITHUB_WORKSPACE/dist/"
-ls -lah
+mkdir "$GITHUB_WORKSPACE/$DIST_LOCATION"
+zip -r9 "$GITHUB_WORKSPACE/$DIST_LOCATION/$SLUG-$VERSION.zip" "tags/$VERSION/"
 echo "##[endgroup]"
