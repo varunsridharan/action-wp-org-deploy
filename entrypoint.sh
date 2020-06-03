@@ -119,3 +119,10 @@ echo "##[group] ➤ Committing files..."
 svn commit -m "Update to version $VERSION from GitHub" --no-auth-cache --non-interactive --username "$WORDPRESS_USERNAME" --password "$WORDPRESS_PASSWORD"
 echo "##[endgroup]
 ✓ Plugin deployed!"
+
+echo "##[group] Creating Dist File"
+mkdir "$GITHUB_WORKSPACE/dist/"
+zip -r9 "$GITHUB_WORKSPACE/dist/$SLUG-$VERSION.zip" "tags/$VERSION/"
+cd "$GITHUB_WORKSPACE/dist/"
+ls -lah
+echo "##[endgroup]"
