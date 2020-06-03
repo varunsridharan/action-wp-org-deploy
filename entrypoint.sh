@@ -123,4 +123,5 @@ echo "##[endgroup]
 echo "##[group] Creating Dist File"
 mkdir "$GITHUB_WORKSPACE/$DIST_LOCATION"
 zip -r9 "$GITHUB_WORKSPACE/$DIST_LOCATION/$SLUG-$VERSION.zip" "tags/$VERSION/"
+zip -r9 "$GITHUB_WORKSPACE/$DIST_LOCATION/$SLUG-$VERSION-assets.zip" "assets/"
 echo "##[endgroup]"
