@@ -44,6 +44,10 @@ if [[ -z "$ASSETS_IGNORE_FILE" ]]; then
   ASSETS_IGNORE_FILE=".wporgassetsignore"
 fi
 
+if [[ -z "$DIST_LOCATION" ]]; then
+  DIST_LOCATION="dist/"
+fi
+
 echo " "
 echo '##[group] ➤ Workflow Arguments'
 # Echo Plugin Slug
